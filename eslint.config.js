@@ -13,6 +13,14 @@ export default defineConfig([
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
     ],
+    overrides: [
+      {
+        files: ['**/*.test.{js,jsx}'],
+        rules: {
+          'no-unused-vars': 'off',
+        },
+      },
+    ],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,

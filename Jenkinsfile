@@ -16,6 +16,8 @@ pipeline {
                 checkout scm
             }
         }
+
+        stage
         stage('Build') {
             steps {
                 bat '''
@@ -25,6 +27,21 @@ pipeline {
                     npm run build
                 '''
             }
+         
+        }
+
+        stage('Test'){
+            steps {
+                bat '''
+                    npm run test
+                '''
+            }
+        }
+
+        stage('Deploy'){
+            sh '''
+                npm install -g vercel
+            '''
         }
     }
 }

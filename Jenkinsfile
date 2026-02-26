@@ -5,7 +5,6 @@ pipeline {
         stage('Build') {
             steps {
                 cleanWs()
-
                 bat '''
                     node --version
                     npm --version

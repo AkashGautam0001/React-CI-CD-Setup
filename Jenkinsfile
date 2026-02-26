@@ -17,7 +17,6 @@ pipeline {
             }
         }
 
-        stage
         stage('Build') {
             steps {
                 bat '''

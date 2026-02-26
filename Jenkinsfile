@@ -6,38 +6,45 @@ pipeline {
 
     stages {
 
-        stage('Clean up code'){
+        stage('Clean up code') {
             steps {
                 cleanWs()
             }
         }
+
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
                 bat '''
                     node --version
                     npm --version
                     npm install
+                '''
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat '''
                     npm run build
                 '''
             }
-         
         }
 
-        stage('Test'){
+        stage('Test') {
             steps {
                 bat '''
-                    npm run test
+                    npx vitest run
                 '''
             }
         }
 
-        stage('Deploy'){
+        stage('Deploy') {
             steps {
                 bat '''
                     npm install -g vercel

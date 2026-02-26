@@ -39,9 +39,11 @@ pipeline {
         }
 
         stage('Deploy'){
-            sh '''
-                npm install -g vercel
-            '''
+            steps {
+                sh '''
+                    npm install -g vercel
+                '''
+            }
         }
     }
 }

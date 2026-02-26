@@ -4,20 +4,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                step{
-                    cleanWs()
-                }
+                cleanWs()
 
-                step {
-                    bat '''
-                        node --version
-                        npm --version
-                        npm install
-                        npm run build
-                    '''
-                }
+                bat '''
+                    node --version
+                    npm --version
+                    npm install
+                    npm run build
+                '''
             }
-            
         }
     }
 }

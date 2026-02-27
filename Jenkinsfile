@@ -33,10 +33,12 @@ pipeline {
 
         stage('Take Approval'){
             steps {
-                input 'Should we deploy ?'
+                timeout(time:1, unit:'HOURS'){
+                    input message: 'Do you want to deploy?', ok: 'Proceed'
+                }
             }
         }
-        
+
         stage('Build') {
             steps {
                 bat 'npx vite build'

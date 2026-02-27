@@ -31,6 +31,12 @@ pipeline {
             }
         }
 
+        stage('Take Approval'){
+            steps {
+                input 'Should we deploy ?'
+            }
+        }
+        
         stage('Build') {
             steps {
                 bat 'npx vite build'

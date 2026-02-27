@@ -1,12 +1,13 @@
 pipeline {
     agent any
+
     options {
         skipDefaultCheckout(true)
     }
 
     stages {
 
-        stage('Clean up code') {
+        stage('Clean Workspace') {
             steps {
                 cleanWs()
             }
@@ -20,35 +21,21 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat '''
-                    node --version
-                    npm --version
-                    npm install
-                '''
+                bat 'node --version'
+                bat 'npm --version'
+                bat 'npm ci'
             }
         }
 
         stage('Build') {
             steps {
-                bat '''
-                    npm run build
-                '''
+                bat 'npx vite build'
             }
         }
 
         stage('Test') {
             steps {
-                bat '''
-                    npx vitest run
-                '''
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                bat '''
-                    npm install -g vercel
-                '''
+                bat 'npx vitest run'
             }
         }
     }

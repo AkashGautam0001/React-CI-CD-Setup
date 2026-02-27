@@ -45,8 +45,8 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps{
-                bat 'vercel --prod --token %VERCEL_TOKEN% --confirm --name "react-ci-cd-setup"'
+            steps {
+                bat 'npx vercel --prod --token %VERCEL_TOKEN% --confirm --name react-ci-cd-setup'
             }
         }
     }

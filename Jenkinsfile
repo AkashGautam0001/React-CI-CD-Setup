@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        VERCEL_TOKEN = 'My variable'
+    }
+
     options {
         skipDefaultCheckout(true)
     }
@@ -30,12 +34,20 @@ pipeline {
         stage('Build') {
             steps {
                 bat 'npx vite build'
+
             }
         }
 
         stage('Test') {
             steps {
                 bat 'npx vitest run'
+            }       
+        }
+
+        stage('Deploy') {
+            steps{
+                bat 'npm install -g vercel'
+                bat 'echo $VERCEL_TOKEN'
             }
         }
     }

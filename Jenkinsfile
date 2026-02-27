@@ -46,9 +46,7 @@ pipeline {
 
         stage('Deploy') {
             steps{
-                bat 'npm install -g vercel'
-                bat 'echo $VERCEL_TOKEN'
-                bat 'vercel --prod --token $VERCEL_TOKEN --confirm --name "react-ci-cd-setup"'
+                bat 'vercel --prod --token %VERCEL_TOKEN% --confirm --name "react-ci-cd-setup"'
             }
         }
     }
